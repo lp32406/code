@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	namespace作用
+	1.需要与Mapper接口路径保持一致
+	2.唯一标识映射文件的 namespace数值不能重复
+  -->
+<mapper namespace="com.jt.manage.mapper.UserMapper">
+	
+	<!-- <select id="" resultType="com.jt.manage.pojo.User">
+		select * from user
+	</select> -->
+	<!-- <insert id=""></insert>
+	<update id=""></update>
+	<delete id=""></delete> -->
+	
+	
+	
+	
+	
+	
+	 
+</mapper>

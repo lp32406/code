@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<!--Spring中静态工厂 
+	spring解析方式:
+		1.当spring容器加载bean标签时,这时实例化对象
+		2.spring容器加载工厂类.通过factory-method中标识的方法
+		实例化对象.
+		3.spring将id和对象进行保存.方便对象获取.
+	 -->
+	<bean id="calendar1" 
+	class="com.jt.manage.factory.StaticFactory" 
+	factory-method="getInstance"/>
+	
+	
+	<!--spring中实例工厂  -->
+	<bean id="instanceFacotry" 
+		class="com.jt.manage.factory.InstanceFacotry"/>
+	<bean id="calendar2" factory-bean="instanceFacotry"
+	factory-method="getInstance"/>
+	
+	
+	<!--Spring工厂模式  -->
+	<bean id="calendar3" class="com.jt.manage.factory.SpringFactory"/>
+	
+	
+	
+	
+	
+	
+	
+</beans>

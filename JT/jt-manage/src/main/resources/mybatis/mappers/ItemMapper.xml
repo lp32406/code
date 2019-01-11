@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jt.manage.mapper.ItemMapper">
+	<!--
+		关于sql的说明:
+			连接Mysql数据库.要求sql语句必须小写
+			";"号 禁止添加
+	  -->
+	<select id="findItemCount" resultType="int">
+		select count(*) from tb_item
+	</select>
+
+	<!--
+		$符合#号的区别
+			#号有预编译的效果,防止sql注入攻击问题
+			#号为参数添加""号 当字符串
+			
+			$符
+				如果需要以字段名称为参数时,使用$符.
+				如果以字段为参数时添加#号.会导致业务异常
+		 原则:能用#号不用$
+		select * from user where username =  and password = 'asdfsdf'
+	  -->
+	<select id="findItemListByPage" resultType="Item">
+		select * from tb_item order by updated desc 
+		limit #{start},#{rows}
+	</select>
+	
+	<!--
+		关于循环遍历的集合说明
+		如果参数 数组 则collection="array"
+		如果参数 List集合  则collection="list"
+		如果参数是Map    则collection="Map中的key"
+	  -->
+	<!--批量更新数据  -->
+	<update id="updateState">
+		update tb_item set status = #{status},
+		updated = now()  where id in (
+			<foreach collection="ids" item="id" separator=",">
+				#{id}
+			</foreach>
+		)
+	</update>
+</mapper>
